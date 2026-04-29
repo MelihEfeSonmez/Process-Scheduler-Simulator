@@ -14,8 +14,8 @@ sjf_algo:
 
     # call parse_input
     leaq    input_buf(%rip), %rsi
-    addq    $4, %rsi
-    mov     $2, %rdx
+    addq    $4, %rsi        # skip 'SJF'
+    mov     $2, %rdx        # algo has 2 fields (ID & burst time)
     call    parse_input
 
     # call sort_processes

@@ -14,8 +14,8 @@ fcfs_algo:
 
     # call parse_input
     leaq    input_buf(%rip), %rsi
-    addq    $5, %rsi
-    mov     $3, %rdx
+    addq    $5, %rsi        # skip 'FCFS'
+    mov     $3, %rdx        # algo has 3 fields (ID & burst time & arrival time)
     call    parse_input
 
     # call sort_processes
