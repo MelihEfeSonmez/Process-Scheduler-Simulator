@@ -30,7 +30,7 @@ sjf_algo:
     cmpl    %r14d, %r13d    # process_count vs. index
     jge     .sjf_exit
 
-    # find the next process
+    # find the process
     leaq    proc_buf(%rip), %r15    
     movl    %r13d, %eax
     shl     $4, %eax
