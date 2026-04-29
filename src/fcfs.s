@@ -43,14 +43,14 @@ fcfs_algo:
 .fcfs_idle:
     cmpl    %ebx, %r12d     # current_time vs arrival
     jge     .fcfs_run_process
-    mov     'X', %al
+    mov     $'X', %al
     call    append_char     # append to output_buf
     incl    %r12d           # increment current_time
-    jmp     fcfs_loop
+    jmp     .fcfs_loop
 
 .fcfs_run_process:
     movb    (%r15), %bl     # get ID
-    movl    4(%r15), %ecx   # get arrival time
+    movl    4(%r15), %ecx   # get burst time
 
 .fcfs_burst:
     testl   %ecx, %ecx      # determine ZF
