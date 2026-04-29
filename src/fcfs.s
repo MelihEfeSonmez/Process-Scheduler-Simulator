@@ -31,7 +31,7 @@ fcfs_algo:
     cmpl    %r14d, %r13d    # index vs. current time 
     jge     .fcfs_exit
 
-    # pass the next process
+    # find the next process
     leaq    proc_buf(%rip), %r15    
     movl    %r13d, %eax
     shl     $4, %eax
