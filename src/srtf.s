@@ -24,7 +24,7 @@ srtf_algo:
 
     movl    process_count(%rip), %edx
 
-srtf_sum_of_bursts:
+.srtf_sum_of_bursts:
     cmpl    %edx, %ecx      # process_count vs. index
     jge     .srtf_sum_done  
     leaq    proc_buf(%rip), %rsi
@@ -35,20 +35,20 @@ srtf_sum_of_bursts:
     incl    %ecx            # increment index
     jmp     .srtf_sum_of_bursts
 
-srtf_sum_done:
+.srtf_sum_done:
     xor     %r12d, %r12d    # time worked actually
     xor     %r13d, %r13d    # current_time
 
 .srtf_main_loop:
     cmpl    %r14d, %r12d    # time worked actually vs sum of bursts
-    jge     %.srtf_exit
+    jge     .srtf_exit
 
     # determine dummy process with biggest integer
     movl    $-1, %r11d
-    movl    $0x7FFFFFF, %r10d
+    movl    $0x7FFFFFFF, %r10d
     xor     %ecx, %ecx      # reset scanner index  
     movl    process_count(%rip), %r9d 
-------------------------------------------------
+
 .srtf_scan_loop:
     cmpl    %r9d, %ecx      # process_count vs scanner index
     jge     .srtf_scan_done
@@ -93,7 +93,7 @@ srtf_sum_done:
     decl    4(%rsi)         # decrement remaining
     incl    %r12d           # increment time worked actually
     incl    %r13d           # increment current_time
-    jmp     .srtf_tick
+    jmp     .srtf_main_loop
 
 .srtf_idle:
     movb    $'X', %al
