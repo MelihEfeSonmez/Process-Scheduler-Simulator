@@ -1,15 +1,36 @@
 EXEC=schedsim
-SRC=src/schedsim.s
 TEST_DIR=test-cases
 OUTPUT_DIR=my-outputs
 
+OBJS = src/fcfs.o src/parser.o src/pf.o src/rr.o src/schedsim.o src/sjf.o src/srtf.o
+
+.PHONY: all testcases grade clean
+
 all: $(EXEC)
 
-$(EXEC): $(OBJ)
-	ld -o $(EXEC) $(OBJ)
+$(EXEC): $(OBJS)
+	ld -o $(EXEC) $(OBJS)
 
-$(OBJ): $(SRC)
-	as -o $(OBJ) $(SRC)
+src/fcfs.o: src/fcfs.s
+	as -o src/fcfs.o src/fcfs.s
+
+src/parser.o: src/parser.s
+	as -o src/parser.o src/parser.s
+
+src/pf.o: src/pf.s
+	as -o src/pf.o src/pf.s
+
+src/rr.o: src/rr.s
+	as -o src/rr.o src/rr.s
+
+src/schedsim.o: src/schedsim.s
+	as -o src/schedsim.o src/schedsim.s
+
+src/sjf.o: src/sjf.s
+	as -o src/sjf.o src/sjf.s
+
+src/srtf.o: src/srtf.s
+	as -o src/srtf.o src/srtf.s
 
 testcases: $(EXEC)
 	@echo "Running test cases..."
@@ -25,5 +46,5 @@ grade: $(EXEC)
 	python3 test/grader.py ./$(EXEC) $(TEST_DIR)
 
 clean:
-	rm -f $(EXEC)
+	rm -f $(EXEC) $(OBJS)
 	rm -rf $(OUTPUT_DIR)
