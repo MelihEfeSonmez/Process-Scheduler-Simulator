@@ -38,7 +38,7 @@ sjf_algo:
     
     # get ID and burst time
     movb    (%r15), %bl 
-    movl    4(%12), ecx
+    movl    4(%r15), ecx
 
 .sjf_burst:
     testl   %ecx, %ecx      # determine ZF
