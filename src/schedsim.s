@@ -1,16 +1,25 @@
 extern fcfs_algo, sjf_algo, srtf_algo, pf_algo, rr_algo
 
 .section .bss
+.global input_buf
 input_buf:      .space 256
+.global output_buf
 output_buf:     .space 1024
+.global temp_buf
 temp_buf:       .space 256
+.global proc_buf
 proc_buf:       .space 160
+.global process_count
 process_count:  .space 4
+.global current_time
 current_time:   .space 4
 
 # Round Robin helpers (optional)
+.global rr_queue
 rr_queue:       .space 64
+.global rr_head
 rr_head:        .space 4
+.global rr_tail
 rr_tail:        .space 4
 
 .section .data
