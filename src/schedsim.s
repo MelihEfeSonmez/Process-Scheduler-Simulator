@@ -1,4 +1,5 @@
-extern fcfs_algo, sjf_algo, srtf_algo, pf_algo, rr_algo
+.extern fcfs_algo, sjf_algo, srtf_algo, pf_algo, rr_algo
+.extern print_output
 
 .section .bss
 .global input_buf
@@ -39,7 +40,7 @@ _start:
     # check the first letter of input to determine 
     # which algorithm will be applied
     leaq    input_buf(%rip), %rdi
-    movb    %rdi, %al
+    movb    (%rdi), %al
 
     cmp     $'F', %al
     je      .fcfs_condition
@@ -85,6 +86,8 @@ _start:
 # EXIT SYSCALL
 ##################################
 .exit:
+    call    print_output
+
     mov     $60, %rax
     xor     %rdi, %rdi
     syscall
