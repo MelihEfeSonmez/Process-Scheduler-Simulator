@@ -1,6 +1,7 @@
 name: Grade
 
-on: push
+on: 
+  push
 
 jobs:
   grade:
