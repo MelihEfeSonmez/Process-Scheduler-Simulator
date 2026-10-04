@@ -144,7 +144,7 @@ These limits come from the static buffer sizes:
 
 ---
 
-## What I learned
+## What is learned
 
 - Writing a whole program in assembly without libc, from the syscall ABI up.
 - Following the System V calling convention by hand (callee-saved registers, passing arguments in registers) across several source files linked together.
